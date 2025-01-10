@@ -1,11 +1,11 @@
-const {pool} = require('pg')
+const { Pool } = require('pg');
 
 const pool = new Pool({
-    user:process.env.DB_USER,
-    host:process.env.DB_HOST,
-    database:process.env.DB_NAME,
-    password:process.env.DB_PASS,
-    port:process.env.DB_PORT,
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
 });
 
 const createTableText = `
@@ -17,7 +17,7 @@ const createTableText = `
 `;
 
 pool.query(createTableText)
-.then(res => console.log('Table is successfully created'))
-.catch(err => console.error('Error executing query', err.stack));
+  .then(() => console.log('Table created successfully'))
+  .catch(err => console.error('Error creating table', err.stack));
 
 module.exports = pool;
